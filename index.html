@@ -9,31 +9,48 @@
     <table>
         <tr>
             <td>
-                <form>
+                <form autocomplete="off" id="inputForm" onsubmit="event.preventDefault(); formSubmit()">
                     <div>
                         <label>Title
-                            <input type="text" name="bookTitle" alt="Title of the book">
+                            <input type="text" name="bookTitle" alt="Title of the book" id="bookTitle">
                         </label>
                     </div>
                     <div>
                         <label>Author
-                            <input type="text" name="bookAuthor" alt="Author of the book">
+                            <input type="text" name="bookAuthor" alt="Author of the book" id="bookAuthor">
                         </label>
                     </div>
                     <div>
                         <label>Read
-                            <input type="text" name="bookRead" alt="Have you read the book?">
+                            <input type="text" name="bookRead" alt="Have you read the book?" id="bookRead">
                         </label>
                     </div>
                     <div>
                         <label>Status
-                            <input type="text" name="bookStatus" alt="What is the status of the book?">
+                            <input type="text" name="bookStatus" alt="What is the status of the book?" id="bookStatus">
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="submit" value="Submit">
                         </label>
                     </div>
 
                 </form>
             </td>
-            <td></td>
+            <td>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Read</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                </table>
+            </td>
         </tr>
     </table>
 
