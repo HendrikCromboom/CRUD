@@ -1,3 +1,7 @@
+function getId(id){ return document.getElementById(id)}
+function returnValue(id){ return (<HTMLInputElement>getId(id)).value}
+function resetValue(id){(<HTMLInputElement>getId(id)).value = ""}
+function formData(id){ return thisForm[id] = returnValue(id)}
 let thisForm:{
     bookTitle: string,
     bookAuthor: string,
@@ -9,16 +13,11 @@ let thisForm:{
     bookRead: "",
     bookStatus:"",
 };
-
-function getId(id){ return document.getElementById(id)}
-function getValue(id){ return (<HTMLInputElement>getId(id)).value}
-function formData(id){ return thisForm[id] = getValue(id)}
-
-
-function formSubmit(){
+function formSubmit(){  // Gets called by HTML DOM inline, seems to be the only way to execute a form without refreshing...
     pullFormData();
     console.log(thisForm);
     pushFormToTable()
+    resetForm()
 
 }
 function pullFormData(){
@@ -30,15 +29,21 @@ function pullFormData(){
 function pushFormToTable(){
     let table = getId("outputTable").getElementsByTagName("tbody")[0];
     let newRow = (<HTMLTableSectionElement>table).insertRow()
-    let cell1 = newRow.insertCell(0);
-    cell1.innerHTML = thisForm.bookTitle;
-    let cell2 = newRow.insertCell(1);
-    cell2.innerHTML = thisForm.bookAuthor;
-    let cell3 = newRow.insertCell(2);
-    cell3.innerHTML = thisForm.bookRead;
-    let cell4 = newRow.insertCell(3);
-    cell4.innerHTML = thisForm.bookStatus;
-    let cell5 = newRow.insertCell(4);
-    cell5.innerHTML = `<a onClick="onEdit(this)">Edit</a>
+    let col1 = newRow.insertCell(0);
+    col1.innerHTML = thisForm.bookTitle;
+    let col2 = newRow.insertCell(1);
+    col2.innerHTML = thisForm.bookAuthor;
+    let col3 = newRow.insertCell(2);
+    col3.innerHTML = thisForm.bookRead;
+    let col4 = newRow.insertCell(3);
+    col4.innerHTML = thisForm.bookStatus;
+    let col5 = newRow.insertCell(4);
+    col5.innerHTML = `<a onClick="onEdit(this)">Edit</a>
                        <a onClick="onDelete(this)">Delete</a>`;
+}
+function resetForm(){
+    resetValue("bookTitle")
+    resetValue("bookAuthor")
+    resetValue("bookRead")
+    resetValue("bookStatus")
 }
